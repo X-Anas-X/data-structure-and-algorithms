@@ -101,9 +101,9 @@ const hasChildrenValues = (arr, character) => {
   let third = false;
   arr.forEach(data =>
   {
-    Object.values(data).forEach(value =>
+    Object.values(data).forEach(val =>
     {
-      if (value === character){
+      if (val === character){
         third = true;
       }
     });
@@ -120,6 +120,29 @@ The input and output of this function are the same as the input and output from 
 
 const hasChildrenEntries = (arr, character) => {
   // Solution code here...
+  let forth =false;
+  arr.forEach(data =>{
+    Object.entries(data).forEach(val =>{
+      if(val[1] === character){
+        if(data.children.length)
+          forth=true ;
+      }
+    });
+  });
+
+
+
+  // let forth = false;
+  // arr.forEach(data =>
+  // {
+  //   Object.entries(data).forEach(val =>
+  //   {
+  //     if (val === character){
+  //       forth = true;
+  //     }
+  //   });
+  // });
+  return forth;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,6 +153,15 @@ Write a function named totalCharacters that takes in an array and returns the nu
 
 const totalCharacters = (arr) => {
   // Solution code here...
+  let counter =0;
+  arr.forEach(data => {
+    Object.values(data).forEach(val => {
+      if(val)
+        counter++;
+    });
+  });
+  return counter;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
