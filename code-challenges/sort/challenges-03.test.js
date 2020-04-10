@@ -49,7 +49,7 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 const alphabetizeBetter = (arr) => {
   // Solution code here...
   arr.sort((a,b) => {
-    if(a.toLowerCase() < b.toLowercase()){
+    if(a.toLowerCase() < b.toLowerCase()){
       return -1;
     }
     else if (a.toLowerCase() === b.toLowerCase()){
@@ -163,20 +163,19 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
-//   arr.sort((a,b) => {
-//     if(a.lastName < b.lastName){
-//       return -1;
-//     }
-//     else if (a.lastName === b.lastName && a.lastName == b.lastName){
-//       return 0;
-//     }
-//     else if (a.lastName > b.lastName){
-//       return 1;
-//     }
-//   });
-//   return arr;
+  arr.sort((a,b) => {
+    if(a.lastName < b.lastName){
+      return -1;
+    }
+    else if (a.lastName === b.lastName && a.lastName === b.lastName){
+      return 0;
+    }
+    else if (a.lastName > b.lastName){
+      return 1;
+    }
+  });
+  return arr;
 
-// };
 };
 
 /* ------------------------------------------------------------------------------------------------
