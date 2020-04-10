@@ -36,7 +36,7 @@ Return the modified array.
 
 const addValues = (arr, value) => {
   // Solution code here...
-  arr.push(value);
+  return arr.push(value);
 };
 
 const addNumbers = (num, arr, times, callback) => {
@@ -61,7 +61,7 @@ Return the modified array.
 
 const removeOne = (num, arr) => {
   // Solution code here...
-  if (num === num%3 === 2 ){
+  if ((num%3)=== 2 ){
     arr.pop(num);
   }
   return arr;
@@ -71,7 +71,7 @@ const removeOne = (num, arr) => {
 const removeElements = (arr, callback) => {
   // Solution code here...
   for (let i=0; i<arr.length;i++){
-    callback[i];
+    callback(arr[i], arr);
   }
   return arr;
 };
@@ -101,6 +101,14 @@ This anonymous function should accept up to three arguments: the element, the in
 
 const removeWithAnon = (arr) => {
   // Solution code here...
+  arr.forEach((num, index, arr) =>{
+    if (num%3 === 2) {
+      arr.pop();
+    }
+  });
+  return arr;
+
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -122,6 +130,19 @@ This function should use forEach to populate your grocery list based on the stor
 
 const createList = (availableItems) => {
   // Solution code here...
+  let list = [];
+  availableItems.forEach((element, index, arr) => {
+    if (arr[index].available === true){
+      list.push(arr[index].name);
+    }
+
+    // availableItems.forEach((name, available) => {
+    //   if (available === true){
+    //     return name;
+    //   }
+
+  });
+  return list;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -140,8 +161,46 @@ Return the resulting output array.
 
 const fizzbuzz = (arr) => {
   // Solution code here...
-
+  
+  let output = [];
+  arr.forEach(num => {
+    if(num%3 === 0){
+      output.push('Fizz Buzz');
+    }else if(num%5 === 0){
+      output.push('Buzz');
+    }else if(num%3 === 0 && num%5 === 0){
+      output.push('Fizz');
+    }else {
+      output.push(num);
+    }
+  });
+  return output;
 };
+
+
+
+//   arr.forEach((num) =>{
+//     switch (num) {
+//     case (num%3 ===0):
+//       output.push('Fizz');
+//       break;
+//     case (num%5 === 0):
+//       output.push('Buzz');
+//       break;
+//     case (num%3 === 0 && num%5 === 0):
+//       output.push('Fizz Buzz');
+//       break;
+//     default:
+//       output.push(num)
+
+//     }
+//   });
+//   return output;
+// };
+
+
+
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
@@ -205,3 +264,4 @@ describe('Testing challenge 7', () => {
     expect(fizzbuzz(inputs).length).toStrictEqual(16);
   });
 });
+
