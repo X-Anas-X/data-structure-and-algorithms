@@ -68,6 +68,7 @@ const onlyOddChars = (str) => {
       oddIdx.push(value);
     }
   })
+  
   return oddIdx.join('');
 };
 
