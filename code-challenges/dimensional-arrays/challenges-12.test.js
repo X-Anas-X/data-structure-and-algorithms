@@ -24,14 +24,18 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  let sumArr=[];
+  let i =0;
+  for( i= 0 ;i <hoursOpen.length; i++){
+    let sum = 0;
 
-  let arr= new Array(stores[0].length).fill(0);
-  for (let i= 0 ; i<stores.length; i++){
-    for (let k=0 ; k <stores[k].length; k++){
-      arr[k] += stores[k][k];
+
+    for(let k=0 ; k<stores.length;k++){
+      sum += stores[k][i]
     }
+    sumArr.push(sum);
   }
-  return arr;
+  return sumArr;
 
 };
 
@@ -47,12 +51,13 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
-
-  let arr =[];
-  hours.forEach((element, idx) => {
-    arr.push({sales: `${data[idx]} cookies`, time: element });
+  let result = [];
+  data.forEach((val, data) => {
+    //88
+    let obj = { sales: `${val} cookies`, time: `${hours[data]}`}
+    result.push(obj);
   });
-  return arr;
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -74,13 +79,16 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
-  let quant =0;
-  arr.forEach(e => {
-    e.items.forEach(data =>{
-      if(data.name === 'Treats')
-        quant += data.quantity;
-    });
+  // // Solution code here...
+  let quant;
+  arr.forEach(element => {
+    if (element.store === 'Pet store'){
+      element.items.forEach(val => {
+        if(val.name === 'Treats'){
+          quant = val.quantity;
+        }
+      });
+    }
   });
   return quant;
 
@@ -106,6 +114,16 @@ The top row of the board is considered row zero and row numbers increase as they
 
 const battleship = (board, row, col) => {
   //  Solution code here...
+  for(let i =0; i<board.length;i++){
+    //[#,'',#,'']
+    for(let j=0 ;i<board[i].length;j++){
+      if(board[i][j] === board[row][col]){
+        return 'hit';
+      } else {
+        return 'miss';
+      }
+    }
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -118,6 +136,15 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  let mul=1;
+  numbers.forEach((val)=>{
+
+    val.forEach((value)=>{
+
+      mul = mul*value;
+    })
+  })
+  return mul;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -138,6 +165,18 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  let sum=0;
+  let count =0 ;
+  let avg;
+  for(let i = 0 ; i<weather.length;i++){
+
+    for(let k = 0 ; k<weather[i].length;k++){
+      sum = sum + weather[i][k];
+      count = count + 1;
+      avg = sum/count;
+    }
+  }
+  return avg;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -159,6 +198,24 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let sum = 0;
+  let count = 0;
+  let firstAvg = 0;
+  let secondAvg = 100;
+
+  for(let i = 0 ; i < weather.length ; i++){
+    sum = 0 ;
+    count = 0;
+    weather[i].forEach(val =>{
+      sum = sum + val ;
+      count = count + 1;
+      firstAvg = sum/count;
+    })
+    if(firstAvg < secondAvg){
+      secondAvg = firstAvg;
+    }
+  }
+  return secondAvg;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -175,6 +232,20 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 
 const excel = (str) => {
   // Solution code here...
+  let frstArr = str.split(`\n`);
+  let resultArr = [];
+  let sum = 0;
+  for (let i = 0; i < frstArr.length; i++) {
+    frstArr[i] = frstArr[i].split(',');
+  }
+  for (let i = 0; i < frstArr.length; i++){
+    for (let k = 0; k < frstArr[i].length; k++){
+      sum = sum + Number(frstArr[i][k]);
+    }
+    resultArr.push(sum);
+    sum = 0;
+  }
+  return resultArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
