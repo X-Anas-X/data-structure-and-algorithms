@@ -10,7 +10,10 @@ Note: You may not use the array's built-in length property.
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
-  return arr.reduce((data) => {return data + 1;}, 0);
+  return arr.reduce((count, data) => {
+    if (data) count++;
+    return count;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -71,11 +74,17 @@ let starWarsData = [{
 
 const returnNames = (arr) => {
   // Solution code here...
-  let name = arr.reduce((acc,value )=>{
-    acc.push(value.name);
+  return arr.reduce((acc,val) =>{
+    acc.push(val.name);
     return acc;
-  },[])
-  return name;
+  },[]);
+
+
+  // return arr.reduce((data, value )=>{
+  //   data.push(value.name);
+  //   return data;
+  // }
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -88,7 +97,12 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   // Solution code here...
+  let arr = str.split('');
+  return arr.reduce((acc, data)=> {
+    return data + acc ;
+  },'');
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -141,6 +155,14 @@ const characters = [
 
 const countNumberOfChildren = (arr) => {
   // Solution code here...
+  return arr.reduce((acc, val)=>{
+    if(val.children){
+      val.children.forEach(() => {
+        acc++;
+      });
+    }
+    return acc;
+  },0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -153,6 +175,13 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 
 const calculateAverage = (arr) => {
   // Solution code here...
+  let red = arr.reduce((acc, val) => {
+    acc['count']++;
+    acc['sum']+= val;
+    return acc;
+  },{count: 0, sum: 0});
+
+  return red.sum/red.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -163,17 +192,21 @@ Write a function named countPrimeNumbers that, given an array elements as input,
 You are welcome to use the provided isPrime function.
 ------------------------------------------------------------------------------------------------ */
 
-const isPrime = (valueue) => {
-  for (let i = 2; i < valueue; i++) {
-    if (valueue % i === 0) {
+const isPrime = (value) => {
+  for (let i = 2; i < value; i++) {
+    if (value % i === 0) {
       return false;
     }
   }
-  return valueue > 1;
+  return value > 1;
 };
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
+  return arr.reduce((acc,val) => {
+    if(isPrime(val)) acc++;
+    return acc;
+  },0);
 };
 
 /* ------------------------------------------------------------------------------------------------
