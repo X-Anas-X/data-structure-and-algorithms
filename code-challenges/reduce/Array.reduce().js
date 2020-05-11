@@ -2,21 +2,25 @@
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
-
-Write a function named countNumberOfElements that, given an array as input, uses reduce to count the number of elements in the array.
-
+Write a function named countNumberOfElements that, given an array as input,
+uses reduce to count the number of elements in the array.
 Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
-  return arr.reduce((data) => {return data + 1;}, 0);
+
+  return arr.reduce((acc,val) => {
+    if(val) acc++;
+    return acc;
+  },0);
+  // console.log(x);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
-
-Write a function named returnNames that, given the Star Wars data, below, uses reduce to return an array containing the names of the characters.
+Write a function named returnNames that, given the Star Wars data, below,
+uses reduce to return an array containing the names of the characters.
 ------------------------------------------------------------------------------------------------ */
 
 let starWarsData = [{
@@ -71,29 +75,30 @@ let starWarsData = [{
 
 const returnNames = (arr) => {
   // Solution code here...
-  let name = arr.reduce((acc,value )=>{
-    acc.push(value.name);
+  return arr.reduce((acc,val) =>{
+    acc.push(val.name);
     return acc;
-  },[])
-  return name;
+  },[]);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
-
 Write a function named reversedString that takes in a string and returns a string with the letters in reverse order.
-
 Note: You must use reduce for this challenge. You may not use the built-in .reverse() string method.
 ------------------------------------------------------------------------------------------------ */
 
 const reversedString = (str) => {
   // Solution code here...
+  let arr = str.split('');
+  return arr.reduce((acc,val)=> {
+    return val+ acc ;
+  },'');
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
-
-Write a function named countNumberOfChildren that, given the array of characters, below, uses reduce to return the total number of children in the data set.
+Write a function named countNumberOfChildren that, given the array of characters, below,
+uses reduce to return the total number of children in the data set.
 ------------------------------------------------------------------------------------------------ */
 
 const characters = [
@@ -141,46 +146,62 @@ const characters = [
 
 const countNumberOfChildren = (arr) => {
   // Solution code here...
+  return arr.reduce((acc,val)=>{
+    if(val.children){
+      val.children.forEach(() => {
+        acc++;
+      });
+    }
+    return acc;
+  },0);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
-
-Write a function that, given an array of numbers as input, uses reduce to calculate the array's average valueue.
-
+Write a function that, given an array of numbers as input, uses reduce to calculate the array's average value.
 Hint: The accumulator should begin as { count: 0, sum: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 const calculateAverage = (arr) => {
   // Solution code here...
+  let x = arr.reduce((acc,val) => {
+    acc['count']++;
+    acc['sum']+=val;
+    return acc;
+  },{count: 0, sum: 0});
+
+
+  return x.sum/x.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
-
-Write a function named countPrimeNumbers that, given an array elements as input, uses reduce to count the number of elements that are prime numbers.
-
+Write a function named countPrimeNumbers that, given an array elements as input,
+uses reduce to count the number of elements that are prime numbers.
 You are welcome to use the provided isPrime function.
 ------------------------------------------------------------------------------------------------ */
 
-const isPrime = (valueue) => {
-  for (let i = 2; i < valueue; i++) {
-    if (valueue % i === 0) {
+const isPrime = (value) => {
+  for (let i = 2; i < value; i++) {
+    if (value % i === 0) {
       return false;
     }
   }
-  return valueue > 1;
+  return value > 1;
 };
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
+  return arr.reduce((acc,val) => {
+    if(isPrime(val)) acc++;
+    return acc;
+  },0);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
-
-Write a function named extractState that, given the snorlaxData, below, uses reduce to return the object whose 'name' property matches the given string.
-
+Write a function named extractState that, given the snorlaxData, below,
+uses reduce to return the object whose 'name' property matches the given string.
 If the input array does not have a stat with that specific name, the function should return null.
 ------------------------------------------------------------------------------------------------ */
 
@@ -217,29 +238,32 @@ const snorlaxData = {
 
 const extractStat = (statName, arr) => {
   // Solution code here...
+  return arr.reduce((acc,val)=>{
+    if(val.stat.name === statName) acc=val;
+    return acc;
+  },{});
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
-
 Write a function named extractChildren that, given the array of characters from challenge 4, accomplishes the following:
-
 1) Uses filter to return an array of the characters that contain the letter 'a' in their name
-
 2) Then, uses reduce to return an array of all the children's names in the filtered array
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = (arr) => {
   // Solution code here...
+  return arr.filter(val => val.name.includes('a')).reduce((acc,val)=> {if(val.children) {
+    acc=[...acc,...val.children];
+  }
+  return acc;
+  },[]);
 };
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
-
 All the code below will verify that your functions are working to solve the challenges.
-
 DO NOT CHANGE any of the below code.
-
 Run your tests from the console: jest challenges-09.test.js
 ------------------------------------------------------------------------------------------------ */
 
