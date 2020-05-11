@@ -142,6 +142,7 @@ const createList = (availableItems) => {
     //   }
 
   });
+
   return list;
 };
 
@@ -161,23 +162,34 @@ Return the resulting output array.
 
 const fizzbuzz = (arr) => {
   // Solution code here...
-  
-  let output = [];
-  arr.forEach(num => {
-    if(num%3 === 0){
-      output.push('Fizz Buzz');
-    }else if(num%5 === 0){
-      output.push('Buzz');
-    }else if(num%3 === 0 && num%5 === 0){
-      output.push('Fizz');
-    }else {
-      output.push(num);
-    }
+
+  //   let output = [];
+  //   arr.forEach(num => {
+  //     if(num%3 === 0){
+  //       output.push('Fizz Buzz');
+  //     }else if(num%5 === 0){
+  //       output.push('Buzz');
+  //     }else if(num%3 === 0 && num%5 === 0){
+  //       output.push('Fizz');
+  //     }else {
+  //       output.push(num);
+  //     }
+  //   });
+  //   return output;
+  // };
+
+  let newArr =[];
+  let name ;
+  arr.forEach(element => {
+    name = element;
+    if(element%3===0) name = 'Fizz';
+    if(element%5===0) name = 'Buzz';
+    if(element%3===0 && element%5===0) name = 'Fizz Buzz';
+
+    newArr.push(name);
   });
-  return output;
+  return newArr;
 };
-
-
 
 //   arr.forEach((num) =>{
 //     switch (num) {
